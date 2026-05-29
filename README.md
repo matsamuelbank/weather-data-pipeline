@@ -10,6 +10,10 @@ weather-data-pipeline/
 ├── requirements.txt
 ├── .env.example
 ├── .gitignore
+├── docker-compose.yml
+├── sql/
+│   ├── 01_create_tables.sql
+│   └── 02_queries.sql
 ├── data/
 │   ├── raw/
 │   └── processed/
@@ -32,3 +36,14 @@ cp .env.example .env
 ```
 
 Renseigne ensuite tes variables locales dans `.env`.
+
+## PostgreSQL avec Docker
+
+`docker-compose.yml` lit les variables depuis `.env`.
+
+```bash
+docker compose up -d
+docker ps
+```
+
+Le mapping de ports est defini par `POSTGRES_PORT_EXTERNAL` et `POSTGRES_PORT_INTERNAL`.
