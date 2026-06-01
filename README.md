@@ -72,3 +72,13 @@ Points a verifier sur cette etape:
 - ajout de la colonne `city`
 - suppression des lignes nulles
 - export CSV pour controler le resultat
+
+## Bloc 3 - Etape 3: SQLAlchemy Load
+
+Objectif de cette branche: connecter Python a PostgreSQL puis charger le DataFrame transforme dans la table `weather_measurements`.
+
+Points a verifier sur cette etape:
+- construction de l'URL de connexion PostgreSQL
+- creation du moteur SQLAlchemy
+- insertion du DataFrame avec `to_sql`
+- verification du nombre de lignes chargees

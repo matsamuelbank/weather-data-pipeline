@@ -12,24 +12,34 @@ def transform_weather_data(data: dict, city: str) -> pd.DataFrame:
     """Convert the raw API payload into a clean tabular dataset."""
     hourly = data["hourly"]
 
-    # On construit un DataFrame simple avec uniquement les colonnes utiles pour l'analyse.
+    # On aligne deja les noms de colonnes sur la table SQL pour simplifier le chargement.
     dataframe = pd.DataFrame(
         {
-            "time": hourly["time"],
-            "temperature": hourly["temperature_2m"],
-            "humidity": hourly["relative_humidity_2m"],
-            "wind_speed": hourly["wind_speed_10m"],
+            "observed_at": hourly["time"],
+            "temperature_c": hourly["temperature_2m"],
+            "humidity_percent": hourly["relative_humidity_2m"],
+            "wind_speed_kmh": hourly["wind_speed_10m"],
         }
     )
 
     # La conversion en datetime sera indispensable pour les filtres et les aggregations plus tard.
-    dataframe["time"] = pd.to_datetime(dataframe["time"])
+    dataframe["observed_at"] = pd.to_datetime(dataframe["observed_at"])
     dataframe["city"] = city
+    dataframe["weather_code"] = None
 
     # Pour ce premier pipeline, on prefere enlever les lignes incompletes plutot que les garder.
     dataframe = dataframe.dropna().reset_index(drop=True)
 
-    return dataframe
+    return dataframe[
+        [
+            "city",
+            "observed_at",
+            "temperature_c",
+            "humidity_percent",
+            "wind_speed_kmh",
+            "weather_code",
+        ]
+    ]
 
 
 def save_processed_data(
