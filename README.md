@@ -47,3 +47,17 @@ docker ps
 ```
 
 Le mapping de ports est defini par `POSTGRES_PORT_EXTERNAL` et `POSTGRES_PORT_INTERNAL`.
+
+## Bloc 3 - Etape 1: API Extract
+
+Objectif de cette branche: recuperer des donnees meteo depuis l'API Open-Meteo et sauvegarder le JSON brut dans `data/raw/`.
+
+```bash
+python src/main.py
+```
+
+Sur cette etape, tu dois verifier:
+- la requete HTTP
+- le code de retour API
+- la structure du JSON recu
+- les cles utiles dans `data["hourly"]`
