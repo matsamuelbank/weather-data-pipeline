@@ -11,6 +11,7 @@ from config import API_BASE_URL, API_TIMEOUT, API_TIMEZONE, RAW_DATA_DIR
 
 def fetch_weather_data(latitude: float, longitude: float) -> dict:
     """Fetch hourly weather data from Open-Meteo."""
+    # On demande uniquement les champs utiles pour la suite du pipeline.
     params = {
         "latitude": latitude,
         "longitude": longitude,
@@ -27,6 +28,7 @@ def save_raw_data(payload: dict, city: str, output_dir: Path = RAW_DATA_DIR) -> 
     """Persist raw API payload to a timestamped JSON file."""
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    # Le nom du fichier reste lisible et permet de retrouver facilement la ville et l'heure.
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     safe_city = city.lower().replace(" ", "_")
     output_path = output_dir / f"weather_{safe_city}_{timestamp}.json"
