@@ -1,4 +1,6 @@
+from db import get_engine
 from extract import fetch_weather_data, save_raw_data
+from load import load_to_postgres
 from transform import save_processed_data, transform_weather_data
 
 
@@ -29,6 +31,13 @@ def main() -> None:
     print("Apercu du DataFrame transforme:")
     print(dataframe.head())
     print(f"CSV cree: {processed_path}")
+
+    print("Connexion a PostgreSQL...")
+    engine = get_engine()
+
+    print("Chargement en base...")
+    inserted_rows = load_to_postgres(dataframe, engine, "weather_measurements")
+    print(f"{inserted_rows} ligne(s) inseree(s) dans weather_measurements.")
 
 
 if __name__ == "__main__":
