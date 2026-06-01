@@ -61,3 +61,14 @@ Sur cette etape, tu dois verifier:
 - le code de retour API
 - la structure du JSON recu
 - les cles utiles dans `data["hourly"]`
+
+## Bloc 3 - Etape 2: Pandas Transform
+
+Objectif de cette branche: transformer le JSON brut en DataFrame propre puis exporter le resultat dans `data/processed/`.
+
+Points a verifier sur cette etape:
+- creation du DataFrame a partir de `data["hourly"]`
+- conversion de la colonne `time` en date
+- ajout de la colonne `city`
+- suppression des lignes nulles
+- export CSV pour controler le resultat

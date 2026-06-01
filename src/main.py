@@ -1,4 +1,5 @@
 from extract import fetch_weather_data, save_raw_data
+from transform import save_processed_data, transform_weather_data
 
 
 def main() -> None:
@@ -18,6 +19,16 @@ def main() -> None:
     print(f"Cles racine: {list(raw_data.keys())}")
     print(f"Cles hourly: {list(raw_data['hourly'].keys())}")
     print(f"Nombre de mesures horaires: {len(raw_data['hourly']['time'])}")
+
+    print("Transformation avec Pandas...")
+    dataframe = transform_weather_data(raw_data, city)
+
+    # On exporte un CSV pour pouvoir verifier visuellement les donnees nettoyees.
+    processed_path = save_processed_data(dataframe, city)
+
+    print("Apercu du DataFrame transforme:")
+    print(dataframe.head())
+    print(f"CSV cree: {processed_path}")
 
 
 if __name__ == "__main__":
