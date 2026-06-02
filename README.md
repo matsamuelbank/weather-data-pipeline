@@ -66,7 +66,7 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Renseigne ensuite tes variables locales dans `.env`.
+Renseigner ensuite ltes variables locales dans `.env`.
 
 ## Variables d'environnement
 
@@ -91,14 +91,14 @@ DB_NAME=weather_db
 
 ## Lancer PostgreSQL
 
-`docker-compose.yml` lit les variables depuis `.env`.
+`docker-compose.yml` lire les variables depuis `.env`.
 
 ```bash
 docker compose up -d
 docker ps
 ```
 
-## Creer la table SQL
+## Créer la table SQL
 
 Lancer le script :
 
@@ -120,33 +120,4 @@ Le pipeline fait les etapes suivantes :
 5. charge les donnees dans PostgreSQL
 6. execute une petite requete d'analyse depuis Python
 
-## Requetes SQL disponibles
 
-Dans [sql/02_queries.sql](/Users/samuelb/Workflow/formation-data/cours-docker/weather-data-pipeline/sql/02_queries.sql) :
-- nombre total de lignes chargees
-- dernieres mesures inserees
-- temperature moyenne par ville
-- temperature maximale par jour
-- vitesse du vent moyenne par jour
-- heures ou il fait plus de 25 degres
-
-## Competences pratiquees
-
-Ce projet montre que tu sais :
-- appeler une API avec `requests`
-- lire et comprendre un JSON
-- transformer des donnees avec Pandas
-- convertir des dates et nettoyer des lignes nulles
-- connecter Python a PostgreSQL avec SQLAlchemy
-- charger un DataFrame avec `to_sql`
-- faire des requetes SQL simples pour analyser les donnees
-
-## Branches du projet
-
-- `setup-project`
-- `feature-docker-postgres`
-- `feature-api-extract`
-- `feature-pandas-transform`
-- `feature-sqlalchemy-load`
-- `feature-sql-analysis`
-- `docs-readme`
