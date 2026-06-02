@@ -1,3 +1,4 @@
+import pandas as pd
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
 
@@ -15,3 +16,8 @@ def get_database_url() -> str:
 def get_engine() -> Engine:
     # On centralise la creation du moteur pour ne pas dupliquer la connexion ailleurs.
     return create_engine(get_database_url())
+
+
+def read_sql_query(query: str, engine: Engine) -> pd.DataFrame:
+    """Run a SELECT query and return the result as a dataframe."""
+    return pd.read_sql(query, engine)

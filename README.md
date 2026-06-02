@@ -82,3 +82,14 @@ Points a verifier sur cette etape:
 - creation du moteur SQLAlchemy
 - insertion du DataFrame avec `to_sql`
 - verification du nombre de lignes chargees
+
+## Bloc 3 - Etape 4: SQL Analysis
+
+Objectif de cette branche: analyser les donnees chargees avec des requetes SQL simples et lisibles.
+
+Points a verifier sur cette etape:
+- compter les lignes inserees
+- afficher les mesures recentes
+- calculer une temperature moyenne par ville
+- calculer une temperature max par jour
+- lire une requete SQL depuis Python avec Pandas
